@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background: #ffffff;
+        }
+
+        .navbar-container {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            max-width: 900px;
+            background: #2ec4b6;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            padding: 15px 0; /* Vertical padding only */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            margin-bottom: 10px;
+        }
+        .nav-center nav a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+            margin: 0; /* Remove any margin overrides */
+            padding: 0 45px; /* Optional padding to add internal space */
+            position: relative;
+            text-align: center;
+            justify-content: center;
+        }
+        .nav-center {
+            display: flex;
+            justify-content: center; /* Center the links */
+            align-items: center; /* Align vertically */
+            gap: 30px; /* Space between links */
+        }
+
+        .nav-center a:hover::after {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: 2px;
+            background-color: #fff;
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+
+        /* Gradient Header Section */
+        .header {
+            background: #ffffff;
+            color: #666;
+            text-align: center;
+            padding: 80px 50px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin: 0;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #2ec4b6;
+            font-style: italic;
+            margin-top: 30px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            margin-top: 30px;
+            margin-bottom: 0px;
+            font-size: 16px;
+            color: #666;
+        }
+
+        .header h1 span {
+            color: #457b9d;
+            font-style: normal;
+        }
+
+        /* Team Section Layout */
+        .team {
+            display: flex;
+            align-items: left;
+            justify-content: left;
+            background: #ffffff;
+            padding-left: 50px;
+            margin-bottom: 10px;
+        }
+        .team-left .vertical-block {
+            width: 6px; /* Width of the vertical block */
+            height: 100px; /* Height of the vertical block */
+            background-color: #2ec4b6; /* Block color */
+            border-radius: 2px; /* Optional: rounded edges */
+        }
+
+        .team-left .content {
+            display:flex;
+            align-items: center; /* Align text and block vertically */
+            gap: 20px; /* Add space between the block and the text */
+        }
+
+        .team .team-left h1 {
+            font-size: 30px;
+            color: #457b9d;
+            margin-bottom: 5px;
+        }
+
+        .team .team-left p {
+            font-size: 18px;
+            color: #2ec4b6;
+            line-height: 1.8;
+        }
+        .team-section {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .team-title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #800000;
+            font-family: 'Garamond',serif;
+        }
+
+        .team-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 0px;
+            align-items: center;
+            gap: 20px;
+            justify-items: center;
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .team-text-container {
+            flex: 1;
+            max-width: 300px;
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .team-cards {
+            flex: 3;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center; /* Center-align the cards horizontally */
+            align-items: center; /* Center-align the cards vertically */
+            padding: 50px;
+        }
+
+        /* Team Cards */
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 1px 1px 1px #2ec4b6, -1px -1px 1px #2ec4b6;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            justify-items: center !important;
+            margin-bottom: 20px;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px); /* Hover animation */
+        }
+
+        .team-card.featured {
+            transform: scale(1.05);
+            border: 2px solid #ffd700;
+        }
+
+        .team-image {
+            margin: 0 auto 15px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #457b9d;
+            font-family: 'Garamond',serif;
+        }
+
+        .team-position {
+            font-size: 14px;
+            color: #888;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .team-text {
+            font-size: 12px;
+            color: #555;
+        }
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="navbar-container">
+            <div class="nav-center">
+                <nav>
+                    <a href="voice">Voice Assistant</a>
+                    <a href="feedbacks">Feedback</a>
+                    <a href="login">Log Out</a>
+                </nav>
+            </div>
+        </div>
+        <h1><span>Who</span> Are We?</h1>
+        <p>Get to know the talented team!</p>
+    </header>
+
+    <!-- Meet the Team Section -->
+    <section class="team">
+        <!-- Left Side -->
+        <div class="team-left">
+            <div class="content">
+            <div class="vertical-block"></div>
+            <h1>Our <br>Amazing Team</h1><br>
+            </div>
+            <p>Together, we bring ideas to life.</p>
+        </div>
+    </section>
+
+    <div class="team-container">
+        <div class="team-cards">
+            <!-- Team Member 1 -->
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://i.postimg.cc/fyYx04X5/Chakeur.jpg" alt="Chakeur">
+                </div>
+                <h2 class="team-name">Mohammed Oussama Chakeur</h2>
+                <p class="team-position"><em>Backend Developer</em></p>
+            </div>
+            <!-- Team Member 2 -->
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://i.postimg.cc/43Bm9mhh/Kyi.jpg" alt="Kyi Nuu">
+                </div>
+                <h2 class="team-name">Kyi Nuu Phyu Sin</h2>
+                <p class="team-position"><em>Frontend Developer</em></p>
+            </div>
+            <!-- Team Member 3 -->
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://i.postimg.cc/W1jY7V2B/Hnin1.jpg" alt="Hnin">
+                </div>
+                <h2 class="team-name">Hnin Eaindra Htun</h2>
+                <p class="team-position"><em>Team Member</em></p>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://i.postimg.cc/rsyyX3cz/Umar.jpg" alt="Umar">
+                </div>
+                <h2 class="team-name">Umar Faruk M-Bello</h2>
+                <p class="team-position"><em>Team Member</em></p>
+                <p class="team-text"></p>
+            </div>
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://i.postimg.cc/xT6LtPCp/Sheriff.jpg" alt="Sheriff">
+                </div>
+                <h2 class="team-name">Sheriff M Ceesay</h2>
+                <p class="team-position"><em>Team Member</em></p>
+                <p class="team-text"></p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

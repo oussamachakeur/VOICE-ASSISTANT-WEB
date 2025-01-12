@@ -1,0 +1,19 @@
+{
+  "folders": [
+	{
+		"path": "../.."
+	},
+	{
+		"path": "../../../.,.,/elearning/app"
+	},
+	{
+		"path": "../../../../oop"
+	},
+	{
+		"path": "../../../../internship/python programming/task1 completed"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "SEproject"
+  }
+}

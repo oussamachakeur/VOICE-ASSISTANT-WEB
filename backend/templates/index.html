@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Option</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #ecf0f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 900px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 5px 5px 15px #bebebe, -5px -5px 15px #ffffff;
+            overflow: hidden;
+        }
+        .button {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+        .button.left {
+            background: #f4f4f4;
+        }
+        .button.right {
+            background: #e0f7fa;
+        }
+        .button:hover {
+            background: #dce7ed;
+        }
+        .button h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .button a {
+            padding: 15px 25px;
+            background: #2ec4b6;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 5px 5px 10px #d1d9e6, -5px -5px 10px #ffffff;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .button a:hover {
+            background: #eaf7f5;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="button left">
+            <h1>Use Without Registration</h1>
+            <a href="listenwithout">Continue</a>
+        </div>
+        <div class="button right">
+            <h1>Use With Registration</h1>
+            <a href="user">Sign Up</a>
+        </div>
+    </div>
+    
+</body>
+</html>

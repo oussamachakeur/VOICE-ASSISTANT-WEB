@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Feedback</title>
+    <script>
+        async function submitFeedback(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get the form data
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const content = document.getElementById("content").value;
+
+            // Retrieve the token from localStorage
+            const token = localStorage.getItem("access_token");
+
+            if (!token) {
+                alert("You must be logged in to submit feedback.");
+                return;
+            }
+
+            // Create the feedback object
+            const feedbackData = {
+                name: name,
+                email: email,
+                content: content,
+            };
+
+            // Make the POST request to the /feedbacks endpoint
+            try {
+                const response = await fetch("http://127.0.0.1:8000/feedbacks", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
+                    body: JSON.stringify(feedbackData),
+                });
+
+                const result = await response.json(); // Get response data
+
+                if (!response.ok) {
+                    // Log detailed error from the server
+                    console.error("Server error:", result);
+                    throw new Error(result.detail || "Failed to submit feedback");
+                }
+
+                // Handle success (you can show a success message or clear the form)
+                alert("Feedback submitted successfully!");
+                document.getElementById("feedback-form").reset();
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="feedback-form" onsubmit="submitFeedback(event)">
+        <h2>Submit Feedback</h2>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+            <label for="content">Feedback</label>
+            <textarea id="content" name="content" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
