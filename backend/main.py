@@ -11,8 +11,10 @@ from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
 from .router import userRouter, login  , feedback , listen , meettheteam , feedbackOk , index , listenwithout
 from fastapi.staticfiles import StaticFiles
+from version import __version__
 
 
+__version__ = "1.0.0"
 
 
 app = FastAPI()
