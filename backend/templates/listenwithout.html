@@ -12,7 +12,7 @@
             font-family:'Arial', sans-serif;
             background: #fff;
             color: #666;
-            display:contents;
+            display: contents;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -41,30 +41,32 @@
             background: #ffffff;
             border-radius: 30px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            padding: 15px 0; /* Vertical padding only */
+            padding: 15px 0;
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 1000;
             margin-bottom: 30px;
         }
+
         .nav-center nav a {
             text-decoration: none;
             color: #067368;
             font-size: 12px;
             font-weight: bold;
             transition: color 0.3s ease;
-            margin: 0; /* Remove any margin overrides */
-            padding: 0 45px; /* Optional padding to add internal space */
+            margin: 0;
+            padding: 0 45px;
             position: relative;
             text-align: center;
             justify-content: center;
         }
+
         .nav-center {
             display: flex;
-            justify-content: center; /* Center the links */
-            align-items: center; /* Align vertically */
-            gap: 30px; /* Space between links */
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
         }
 
         .nav-center a:hover::after {
@@ -95,15 +97,16 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #333;
             font-style: italic;
-            margin-top: 10px;
+            margin-top: 30px;
         }
 
         .header p {
             margin: 10px 0 0;
             margin-top: 30px;
             font-size: 14px;
-            color:#666;
+            color: #666;
         }
+
         .main-container {
             margin: -100px auto 0;
             max-width: 520px;
@@ -114,7 +117,6 @@
             padding: 30px;
             justify-content: center;
         }
-
 
         .container h1 {
             font-size: 35px;
@@ -204,34 +206,68 @@
         .hidden {
             display: none;
         }
-
     </style>
     <script>
-        function startVoiceAnimation() {
+        async function startVoiceAnimation() {
             const voiceAnimation = document.querySelector(".voice-animation");
+            const container = document.querySelector(".container"); // Select the container to append the message
             voiceAnimation.classList.remove("hidden");
+    
+            try {
+                const response = await fetch("/voice", { method: "POST" });
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log("Backend response:", result.message);
+    
+                    // Create a temporary message element
+                    const tempMessage = document.createElement("p");
+                    tempMessage.textContent = result.message;
+                    tempMessage.style.fontSize = "16px";
+                    tempMessage.style.color = "#067368";
+                    tempMessage.style.marginTop = "20px";
+    
+                    // Assign a class for easy identification and appending
+                    tempMessage.classList.add("temporary-message");
+                    container.appendChild(tempMessage);
+    
+                    // Remove the message after 5 seconds
+                    setTimeout(() => {
+                        tempMessage.remove();
+                    }, 5000);
+                } else {
+                    console.error("Error connecting to the backend");
+                }
+            } catch (error) {
+                console.error("Failed to connect to the backend:", error);
+            }
+    
+            // Stop the voice animation after 5 seconds
             setTimeout(() => {
                 voiceAnimation.classList.add("hidden");
-            }, 5000); // Stops animation after 5 seconds
+            }, 5000);
         }
-    </script>
+    </script>    
+    
 </head>
 <body>
     <header class="header">
+        <div class="navbar-container">
+            
+        </div>
         <h1>The Future Listens to You...</h1>
         <p>Let's Be Connected!</p>
     </header>
     <div class="main-container">
-    <div class="container">
-        <h1>Revolutionize with AI-Powered Voice Assistant</h1>
-        <p class="description">Click the button below to activate the assistant and experience the future of voice interaction.</p>
-        <button class="start-button" onclick="startVoiceAnimation()">Let's Get Started</button>
-        <div class="voice-animation hidden">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="container">
+            <h1>Revolutionize with AI-Powered Voice Assistant</h1>
+            <p class="description">Click the button below to activate the assistant and experience the future of voice interaction.</p>
+            <button class="start-button" onclick="startVoiceAnimation()">Let's Get Started</button>
+            <div class="voice-animation hidden">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 </html>

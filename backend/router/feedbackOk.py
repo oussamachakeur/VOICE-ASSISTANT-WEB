@@ -17,6 +17,5 @@ templates = Jinja2Templates(directory="backend/templates")
 
 @router.get("/feedbackOk", response_class=HTMLResponse)
 async def show_registration_form(request: Request):
-    # Render the registration HTML form
     return templates.TemplateResponse("feedbackOk.html", {"request": request})
 

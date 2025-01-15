@@ -105,10 +105,7 @@ async def voice_assistant():
         url = "https://www.google.com" 
         open_website(url)
         response = "Opened Google as requested."
-    elif "joke" in command:
-        joke = "Why don't scientists trust atoms? Because they make up everything!"
-        speak(joke)
-        response = joke
+   
     elif "weather" in command:
         location = command.replace("weather", "").strip()
         if location:
@@ -155,17 +152,18 @@ def get_video_id_from_search(query):
     return video_id
 
 def get_weather(location):
-    api_key = "37bc64bcba50acb1e13cb956d86ac3d9"
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
+    api_key = "bf6497e4dbec1bc85e1511a420b69048"
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={location}&units=metric&appid={api_key}"
     response = requests.get(url).json()
     
-    if response["cod"] == 200:
+    if response.get("cod") == 200:
         main = response["main"]
         weather = response["weather"][0]["description"]
-        temp = main["temp"] - 273.15  # Convert from Kelvin to Celsius
+        temp = main["temp"]
         return f"The temperature in {location} is {temp:.2f}°C with {weather}."
     else:
-        return "I couldn't retrieve weather data."
+        return f"Error: {response.get('message', 'Could not retrieve weather data.')}"
+
 
 tasks = []
 

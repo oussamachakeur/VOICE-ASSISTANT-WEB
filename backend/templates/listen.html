@@ -210,25 +210,44 @@
     <script>
         async function startVoiceAnimation() {
             const voiceAnimation = document.querySelector(".voice-animation");
+            const container = document.querySelector(".container"); // Select the container to append the message
             voiceAnimation.classList.remove("hidden");
-
+    
             try {
                 const response = await fetch("/voice", { method: "POST" });
                 if (response.ok) {
                     const result = await response.json();
                     console.log("Backend response:", result.message);
+    
+                    // Create a temporary message element
+                    const tempMessage = document.createElement("p");
+                    tempMessage.textContent = result.message;
+                    tempMessage.style.fontSize = "16px";
+                    tempMessage.style.color = "#067368";
+                    tempMessage.style.marginTop = "20px";
+    
+                    // Assign a class for easy identification and appending
+                    tempMessage.classList.add("temporary-message");
+                    container.appendChild(tempMessage);
+    
+                    // Remove the message after 5 seconds
+                    setTimeout(() => {
+                        tempMessage.remove();
+                    }, 5000);
                 } else {
                     console.error("Error connecting to the backend");
                 }
             } catch (error) {
                 console.error("Failed to connect to the backend:", error);
             }
-
+    
+            // Stop the voice animation after 5 seconds
             setTimeout(() => {
                 voiceAnimation.classList.add("hidden");
-            }, 5000); // Stops animation after 5 seconds
+            }, 5000);
         }
-    </script>
+    </script>    
+    
 </head>
 <body>
     <header class="header">
