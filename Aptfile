@@ -1,3 +1,4 @@
 libpq-dev
 libjpeg-dev
 build-essential
+zlib1g-dev
