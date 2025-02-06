@@ -30,3 +30,4 @@ async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
     
     # After user creation, redirect to a different page
     return RedirectResponse(url="/login", status_code=status.HTTP_303_SEE_OTHER)
+
